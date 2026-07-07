@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Offline-capable emergency first-aid quick reference: CPR with metronome, choking, severe bleeding, stroke, overdose, and more. Not a substitute for training or professional care.">
+<title>First Three Minutes — Emergency Quick Reference</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --card: #ffffff;
+    --ink: #1f2430;
+    --ink-soft: #5b6270;
+    --line: #e3e1db;
+    --red: #c0392b;
+    --red-deep: #96281b;
+    --red-soft: #fdeeec;
+    --accent: #1f6f5c;
+    --accent-soft: #e8f3f0;
+    --amber-soft: #fdf3e3;
+    --amber-ink: #8a5a12;
+    --shadow: 0 1px 3px rgba(31, 36, 48, 0.08), 0 8px 24px rgba(31, 36, 48, 0.06);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16181d;
+      --card: #1f222a;
+      --ink: #e8e9ec;
+      --ink-soft: #a3a9b5;
+      --line: #33373f;
+      --red: #e2604f;
+      --red-deep: #f08373;
+      --red-soft: #3a2320;
+      --accent: #5cb8a2;
+      --accent-soft: #1e332e;
+      --amber-soft: #362b16;
+      --amber-ink: #e0b46a;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  a { color: var(--accent); }
+
+  .call-banner {
+    background: var(--red);
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.01em;
+  }
+  .call-banner span { opacity: 0.92; font-weight: 500; }
+
+  header.masthead {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 20px 8px;
+  }
+  h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+    font-size: 18px;
+    max-width: 60ch;
+  }
+  .offline-note {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  nav.chips {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 20px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav.chips::-webkit-scrollbar { display: none; }
+  nav.chips a {
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 15px;
+    font-size: 14.5px;
+    font-weight: 600;
+    box-shadow: var(--shadow);
+  }
+  nav.chips a.urgent { color: var(--red); border-color: color-mix(in srgb, var(--red) 35%, var(--line)); }
+
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 20px 20px;
+    display: grid;
+    gap: 22px;
+  }
+
+  section.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 26px 28px;
+  }
+  section.card h2 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .tagline {
+    color: var(--ink-soft);
+    margin: 0 0 16px;
+    font-size: 15.5px;
+    font-weight: 500;
+  }
+  .badge {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-radius: 6px;
+    padding: 3px 8px;
+    background: var(--red-soft);
+    color: var(--red);
+    white-space: nowrap;
+  }
+  ol.steps { margin: 0; padding-left: 0; list-style: none; counter-reset: step; display: grid; gap: 12px; }
+  ol.steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 46px;
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--bg);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  ol.steps li strong { display: block; margin-bottom: 1px; }
+  ol.steps li small { color: var(--ink-soft); font-size: 15px; display: block; }
+
+  .callout {
+    margin-top: 16px;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  .callout.warn { background: var(--amber-soft); color: var(--amber-ink); }
+  .callout.danger { background: var(--red-soft); color: var(--red-deep); font-weight: 600; }
+  .callout strong { font-weight: 700; }
+
+  .metronome {
+    margin-top: 20px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .beat-dot {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--red);
+    flex: 0 0 auto;
+    transform: scale(0.55);
+    opacity: 0.35;
+    transition: transform 90ms ease-out, opacity 90ms ease-out;
+  }
+  .beat-dot.pulse { transform: scale(1); opacity: 1; }
+  .metronome .info { flex: 1 1 160px; min-width: 0; }
+  .metronome .info strong { font-size: 17px; display: block; }
+  .metronome .info span { color: var(--ink-soft); font-size: 14.5px; }
+  button.big {
+    appearance: none;
+    border: none;
+    border-radius: 10px;
+    background: var(--red);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 13px 26px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  button.big:active { transform: translateY(1px); }
+  button.big.stop { background: var(--ink); }
+  button.ghost {
+    appearance: none;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: transparent;
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .stopwatch { display: flex; align-items: center; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+  .stopwatch .time {
+    font-variant-numeric: tabular-nums;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    min-width: 118px;
+  }
+  .stopwatch .time.over { color: var(--red); }
+
+  table.numbers {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15.5px;
+    margin-top: 6px;
+  }
+  table.numbers th, table.numbers td {
+    text-align: left;
+    padding: 9px 12px 9px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  table.numbers th { color: var(--ink-soft); font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+  table.numbers td.num { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; margin: 0; padding: 0; list-style: none; }
+  .two-col li { padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+  .two-col li strong { color: var(--red); }
+  @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+
+  footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 12px 20px 56px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+  }
+  footer .disclaimer {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+  }
+  footer h3 { margin: 0 0 8px; color: var(--ink); font-size: 16px; }
+  footer p { margin: 0 0 10px; }
+  footer p:last-child { margin: 0; }
+
+  @media print {
+    .call-banner, nav.chips, .metronome, .stopwatch, .offline-note, footer .no-print { display: none !important; }
+    body { background: #fff; color: #000; font-size: 12px; }
+    section.card { box-shadow: none; break-inside: avoid; padding: 14px 16px; }
+    header.masthead { padding-top: 8px; }
+    main { gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="call-banner">In a real emergency, call your local emergency number first. <span>Put the phone on speaker and follow the dispatcher's instructions.</span></div>
+
+<header class="masthead">
+  <h1>First Three Minutes</h1>
+  <p class="subtitle">What to do in a medical emergency before help arrives. Plain steps, no jargon, works without internet.</p>
+  <span class="offline-note">Save this page (Ctrl/Cmd&nbsp;+&nbsp;S) or print it — it works fully offline.</span>
+</header>
+
+<nav class="chips" aria-label="Jump to emergency">
+  <a href="#cpr" class="urgent">CPR</a>
+  <a href="#choking" class="urgent">Choking</a>
+  <a href="#bleeding" class="urgent">Severe bleeding</a>
+  <a href="#stroke">Stroke</a>
+  <a href="#heart">Heart attack</a>
+  <a href="#anaphylaxis">Anaphylaxis</a>
+  <a href="#overdose">Overdose</a>
+  <a href="#unconscious">Unconscious</a>
+  <a href="#seizure">Seizure</a>
+  <a href="#burns">Burns</a>
+  <a href="#numbers">Emergency numbers</a>
+</nav>
+
+<main>
+
+  <section class="card" id="cpr">
+    <h2>CPR — not breathing, not responding <span class="badge">Act now</span></h2>
+    <p class="tagline">Hands-only CPR for adults and teens. You cannot make things worse for someone whose heart has stopped — doing something beats doing nothing.</p>
+    <ol class="steps">
+      <li><strong>Check response.</strong><small>Tap their shoulders firmly and shout. Look for normal breathing for no more than 10 seconds. Gasping is not normal breathing.</small></li>
+      <li><strong>Call your emergency number on speaker.</strong><small>Or point at a specific person: “You — call an ambulance.” Ask someone else to find an AED (defibrillator).</small></li>
+      <li><strong>Push hard and fast in the center of the chest.</strong><small>Heel of one hand on the breastbone, other hand on top, arms straight. Press at least 5&nbsp;cm / 2&nbsp;inches deep, 100–120 times per minute. Let the chest fully rise between pushes.</small></li>
+      <li><strong>Don't stop.</strong><small>Swap with someone every 2 minutes if you can. Continue until an AED is ready, professionals take over, or the person clearly wakes and breathes.</small></li>
+      <li><strong>Use the AED the moment it arrives.</strong><small>Turn it on and do exactly what its voice says. It will not shock someone who doesn't need it.</small></li>
+    </ol>
+    <div class="metronome" role="group" aria-label="CPR compression metronome">
+      <div class="beat-dot" id="beatDot" aria-hidden="true"></div>
+      <div class="info">
+        <strong>Compression metronome — 110 / min</strong>
+        <span>Push down on every beat. Same tempo as “Stayin' Alive.”</span>
+      </div>
+      <button class="big" id="metroBtn" type="button">▶ Start beat</button>
+    </div>
+    <div class="callout warn"><strong>Child or infant?</strong> Same rhythm. For a small child use one hand, about 5&nbsp;cm deep; for an infant use two fingers in the center of the chest, about 4&nbsp;cm deep. If you're trained, give 2 rescue breaths after every 30 compressions.</div>
+  </section>
+
+  <section class="card" id="choking">
+    <h2>Choking <span class="badge">Act now</span></h2>
+    <p class="tagline">If they can cough, speak, or breathe — encourage coughing and stay close. If they can't make sound or breathe, act immediately.</p>
+    <ol class="steps">
+      <li><strong>Ask “Are you choking?”</strong><small>Silence, gripping the throat, or turning blue means yes. Say you're going to help.</small></li>
+      <li><strong>Give 5 back blows.</strong><small>Lean them forward. Strike firmly between the shoulder blades with the heel of your hand.</small></li>
+      <li><strong>Give 5 abdominal thrusts.</strong><small>Stand behind them. Fist just above the navel, other hand over it, pull sharply inward and upward. (Pregnant or in a wheelchair: push on the center of the chest instead.)</small></li>
+      <li><strong>Alternate 5 and 5 until the object comes out.</strong><small>Have someone call emergency services meanwhile.</small></li>
+      <li><strong>If they pass out — start CPR.</strong><small>Lower them to the ground and begin chest compressions (see CPR above). Look in the mouth between sets; remove the object only if you can clearly see it.</small></li>
+    </ol>
+    <div class="callout warn"><strong>Infant under 1 year:</strong> lay them face-down along your forearm, head lower than body. 5 back blows between shoulder blades, flip over, 5 chest presses with two fingers. Repeat. Never abdominal thrusts on an infant.</div>
+  </section>
+
+  <section class="card" id="bleeding">
+    <h2>Severe bleeding <span class="badge">Act now</span></h2>
+    <p class="tagline">Blood that spurts, pools, or won't stop soaking through fabric. Stopping the bleed matters more than cleanliness.</p>
+    <ol class="steps">
+      <li><strong>Call emergency services.</strong><small>Or have someone do it while you work.</small></li>
+      <li><strong>Press hard, directly on the wound.</strong><small>Use a clean cloth, gauze, or clothing — bare hands if that's all you have. Press harder than feels polite and do not let go.</small></li>
+      <li><strong>Don't remove soaked cloth.</strong><small>Add more layers on top and keep pressing. Removing it tears the forming clot.</small></li>
+      <li><strong>If a limb keeps bleeding badly and a tourniquet is available, use it.</strong><small>Place 5–7&nbsp;cm above the wound (never on a joint), tighten until bleeding stops, and write down the time. It will hurt — that's normal.</small></li>
+      <li><strong>Keep them warm and lying down.</strong><small>Cover with a coat or blanket and keep talking to them until help arrives.</small></li>
+    </ol>
+    <div class="callout danger">Never remove an object stuck in a wound — press around it instead.</div>
+  </section>
+
+  <section class="card" id="stroke">
+    <h2>Stroke — think F.A.S.T.</h2>
+    <p class="tagline">Brain cells die by the minute. Even if symptoms fade, call anyway — treatment is time-critical.</p>
+    <ol class="steps">
+      <li><strong>Face.</strong><small>Ask them to smile. Does one side droop?</small></li>
+      <li><strong>Arms.</strong><small>Ask them to raise both arms. Does one drift down?</small></li>
+      <li><strong>Speech.</strong><small>Ask them to repeat a simple sentence. Slurred, strange, or missing words?</small></li>
+      <li><strong>Time.</strong><small>Any one sign: call emergency services now, and note the exact time symptoms started — doctors will ask.</small></li>
+    </ol>
+    <div class="callout warn">Don't give food, drink, or medication. Don't let them “sleep it off.” Keep them still and comfortable until help arrives.</div>
+  </section>
+
+  <section class="card" id="heart">
+    <h2>Heart attack</h2>
+    <p class="tagline">Pressure, squeezing, or pain in the chest lasting more than a few minutes — possibly spreading to the arm, jaw, neck, or back — with shortness of breath, nausea, or cold sweat. In women, older adults, and diabetics it can be subtler: unusual fatigue, indigestion-like discomfort.</p>
+    <ol class="steps">
+      <li><strong>Call emergency services immediately.</strong><small>Do not drive them yourself unless there is truly no other option — paramedics start treatment on arrival.</small></li>
+      <li><strong>Have them stop and rest.</strong><small>Sitting on the floor leaning against a wall, knees bent, is a good position.</small></li>
+      <li><strong>Aspirin, if the dispatcher agrees.</strong><small>If they're not allergic and can swallow, chewing one regular aspirin (or 2–4 baby aspirin) slows the clot. Ask the dispatcher first.</small></li>
+      <li><strong>Stay and watch.</strong><small>If they become unresponsive and stop breathing normally, start CPR and send someone for an AED.</small></li>
+    </ol>
+  </section>
+
+  <section class="card" id="anaphylaxis">
+    <h2>Anaphylaxis — severe allergic reaction</h2>
+    <p class="tagline">Trouble breathing, swelling of face or throat, widespread hives, dizziness or collapse — usually minutes after food, a sting, or medication.</p>
+    <ol class="steps">
+      <li><strong>Use the epinephrine auto-injector immediately.</strong><small>EpiPen or similar: blue/safety cap off, orange/needle end firmly into the outer thigh (through clothes is fine), hold 3 seconds. When in doubt, inject — it's very safe.</small></li>
+      <li><strong>Call emergency services.</strong><small>Even if they improve. Reactions can rebound hours later; they need hospital observation.</small></li>
+      <li><strong>Position them.</strong><small>Lying flat with legs raised. If breathing is hard, let them sit up. If vomiting, on their side. Don't let them stand or walk suddenly.</small></li>
+      <li><strong>Second dose after 5 minutes</strong><small>if symptoms haven't improved and another injector is available.</small></li>
+    </ol>
+  </section>
+
+  <section class="card" id="overdose">
+    <h2>Opioid overdose</h2>
+    <p class="tagline">Unresponsive, breathing very slowly or not at all, pinpoint pupils, blue or gray lips. Common with fentanyl, heroin, and prescription painkillers.</p>
+    <ol class="steps">
+      <li><strong>Try to wake them.</strong><small>Shout their name, rub your knuckles hard on their breastbone.</small></li>
+      <li><strong>Call emergency services.</strong><small>Many places have Good Samaritan laws protecting people who call for help at an overdose.</small></li>
+      <li><strong>Give naloxone (Narcan) if available.</strong><small>Spray into one nostril, or inject per package. It's harmless if opioids aren't the cause. Repeat after 2–3 minutes if no response and more is available.</small></li>
+      <li><strong>Support their breathing.</strong><small>Not breathing at all? Start CPR. Breathing but unresponsive? Recovery position (below) so they don't choke.</small></li>
+      <li><strong>Stay with them.</strong><small>Naloxone wears off before many opioids do — they can slip back into overdose.</small></li>
+    </ol>
+  </section>
+
+  <section class="card" id="unconscious">
+    <h2>Unconscious but breathing — recovery position</h2>
+    <p class="tagline">For someone who won't wake up but is clearly breathing normally. The goal: keep the airway open and let fluids drain out, not in.</p>
+    <ol class="steps">
+      <li><strong>Call emergency services.</strong><small>Unexplained unconsciousness always warrants a call.</small></li>
+      <li><strong>Kneel beside them; nearest arm at a right angle,</strong><small>palm up, like they're waving.</small></li>
+      <li><strong>Far hand against their near cheek,</strong><small>back of their hand to their face, and hold it there.</small></li>
+      <li><strong>Pull the far knee up and roll them toward you</strong><small>onto their side. The bent knee stops them rolling onto their face.</small></li>
+      <li><strong>Tilt the head back slightly</strong><small>to keep the airway open. Check breathing regularly until help arrives.</small></li>
+    </ol>
+    <div class="callout warn">Suspected neck or back injury (fall, crash)? Don't move them unless they vomit or you must leave — keeping the airway clear takes priority over the spine.</div>
+  </section>
+
+  <section class="card" id="seizure">
+    <h2>Seizure</h2>
+    <p class="tagline">Most seizures end on their own within 1–3 minutes. Your job is to protect them from injury and keep time — not to stop the seizure.</p>
+    <ol class="steps">
+      <li><strong>Start timing.</strong><small>Use the stopwatch below. The duration decides whether this is an emergency.</small></li>
+      <li><strong>Clear the space and cushion the head.</strong><small>Move furniture and hard objects away. Fold a jacket under their head. Loosen anything tight around the neck.</small></li>
+      <li><strong>Never restrain them or put anything in their mouth.</strong><small>They cannot swallow their tongue — that's a myth. Objects in the mouth cause injuries.</small></li>
+      <li><strong>When jerking stops, roll them onto their side</strong><small>(recovery position) and stay while they come round. Confusion afterward is normal — speak calmly.</small></li>
+      <li><strong>Call emergency services if:</strong><small>it lasts over 5 minutes, a second seizure follows, it's their first ever, they're pregnant or injured, it happened in water, or they don't wake up.</small></li>
+    </ol>
+    <div class="stopwatch" role="group" aria-label="Seizure stopwatch">
+      <div class="time" id="swTime">0:00</div>
+      <button class="big" id="swBtn" type="button">▶ Start timer</button>
+      <button class="ghost" id="swReset" type="button">Reset</button>
+    </div>
+  </section>
+
+  <section class="card" id="burns">
+    <h2>Burns</h2>
+    <p class="tagline">Cool water is the treatment. Everything folklore suggests — butter, ice, toothpaste — makes it worse.</p>
+    <ol class="steps">
+      <li><strong>Cool under running water for 20 minutes.</strong><small>Cool, not ice-cold. This keeps working even if you start up to 3 hours after the burn.</small></li>
+      <li><strong>Remove jewelry and loose clothing near the burn</strong><small>before swelling starts — but never peel off anything stuck to the skin.</small></li>
+      <li><strong>Cover loosely.</strong><small>Cling film laid on (not wrapped tight) or a clean non-fluffy cloth. Don't pop blisters.</small></li>
+      <li><strong>Call emergency services for serious burns:</strong><small>larger than the person's palm, on the face, hands, feet, groin, or joints, caused by chemicals or electricity, or any deep/white/charred burn — and any significant burn on a child.</small></li>
+    </ol>
+    <div class="callout warn"><strong>Chemical burn:</strong> brush off dry powder first, then rinse with running water for at least 20 minutes and remove contaminated clothing. <strong>Electrical burn:</strong> make sure the power is off before touching them.</div>
+  </section>
+
+  <section class="card" id="numbers">
+    <h2>Emergency numbers worldwide</h2>
+    <p class="tagline">If you don't know the local number, try 112 — it works in the EU and is redirected in many other countries, including from most mobile phones.</p>
+    <table class="numbers">
+      <thead><tr><th>Region</th><th>Number</th></tr></thead>
+      <tbody>
+        <tr><td>United States, Canada, Mexico</td><td class="num">911</td></tr>
+        <tr><td>European Union (all members)</td><td class="num">112</td></tr>
+        <tr><td>United Kingdom</td><td class="num">999 or 112</td></tr>
+        <tr><td>Australia</td><td class="num">000</td></tr>
+        <tr><td>New Zealand</td><td class="num">111</td></tr>
+        <tr><td>India</td><td class="num">112</td></tr>
+        <tr><td>Japan (ambulance/fire)</td><td class="num">119</td></tr>
+        <tr><td>China (ambulance)</td><td class="num">120</td></tr>
+        <tr><td>Brazil (ambulance)</td><td class="num">192</td></tr>
+        <tr><td>South Africa</td><td class="num">112 (mobile) / 10177</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><strong>US Poison Control:</strong> 1-800-222-1222 · <strong>US Suicide &amp; Crisis Lifeline:</strong> call or text 988</div>
+  </section>
+
+  <section class="card" id="kit">
+    <h2>Be ready before it happens</h2>
+    <p class="tagline">Five minutes of preparation now is worth more than anything you can improvise later.</p>
+    <ul class="two-col">
+      <li><strong>Take a course.</strong> A half-day first-aid class (Red Cross / Red Crescent, St John, local fire dept.) makes everything on this page automatic.</li>
+      <li><strong>Learn where the nearest AED is</strong> — at work, at the gym, in your building.</li>
+      <li><strong>Save emergency contacts</strong> under ICE (“In Case of Emergency”) in your phone, and set up your phone's Medical ID / emergency info screen.</li>
+      <li><strong>Know your address.</strong> Under stress people forget it. So do guests — write it inside a kitchen cupboard.</li>
+      <li><strong>Keep a small kit:</strong> gauze, bandages, gloves, and — if opioids are around you — naloxone.</li>
+      <li><strong>Share this page.</strong> The life it helps save will most likely belong to someone the reader loves: most emergencies happen at home.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="disclaimer">
+    <h3>Please read</h3>
+    <p>This page is a memory aid based on widely published guidance from organizations such as the American Heart Association, the International Federation of Red Cross and Red Crescent Societies, and the UK NHS. It is <strong>not medical advice, and not a substitute for certified first-aid training or professional care</strong>. Emergency dispatchers will guide you in real time — call them first and follow their instructions over anything written here.</p>
+    <p class="no-print">Guidance evolves. If you're reading this years after 2026, verify against a current source — and consider taking that first-aid course today.</p>
+    <p>Made with care, for everyone. Copy it, translate it, print it, share it — this page is dedicated to the public domain (CC0).</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // --- CPR metronome: 110 BPM click + visual pulse ---
+  var metroBtn = document.getElementById('metroBtn');
+  var beatDot = document.getElementById('beatDot');
+  var audioCtx = null, metroTimer = null, nextBeat = 0;
+  var BPM = 110, INTERVAL = 60 / BPM;
+
+  function click(when) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = 'square';
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.5, when);
+    gain.gain.exponentialRampToValueAtTime(0.001, when + 0.06);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(when);
+    osc.stop(when + 0.07);
+  }
+
+  function pulse() {
+    beatDot.classList.add('pulse');
+    setTimeout(function () { beatDot.classList.remove('pulse'); }, 120);
+  }
+
+  function schedule() {
+    // Schedule audio slightly ahead so the beat stays steady even if the tab hiccups.
+    while (nextBeat < audioCtx.currentTime + 0.15) {
+      click(nextBeat);
+      var wait = Math.max(0, (nextBeat - audioCtx.currentTime) * 1000);
+      setTimeout(pulse, wait);
+      nextBeat += INTERVAL;
+    }
+    metroTimer = setTimeout(schedule, 50);
+  }
+
+  metroBtn.addEventListener('click', function () {
+    if (metroTimer) {
+      clearTimeout(metroTimer);
+      metroTimer = null;
+      metroBtn.textContent = '▶ Start beat';
+      metroBtn.classList.remove('stop');
+      return;
+    }
+    if (!audioCtx) {
+      try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+      catch (e) { audioCtx = null; }
+    }
+    if (audioCtx) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      nextBeat = audioCtx.currentTime + 0.1;
+      schedule();
+    } else {
+      // No audio available: visual-only fallback.
+      (function visualLoop() {
+        pulse();
+        metroTimer = setTimeout(visualLoop, INTERVAL * 1000);
+      })();
+    }
+    metroBtn.textContent = '⏸ Stop';
+    metroBtn.classList.add('stop');
+  });
+
+  // --- Seizure stopwatch ---
+  var swTime = document.getElementById('swTime');
+  var swBtn = document.getElementById('swBtn');
+  var swReset = document.getElementById('swReset');
+  var swStart = null, swTimer = null;
+
+  function renderTime() {
+    var s = Math.floor((Date.now() - swStart) / 1000);
+    swTime.textContent = Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+    // Past 5 minutes a seizure is an emergency — turn the clock red.
+    swTime.classList.toggle('over', s >= 300);
+  }
+
+  swBtn.addEventListener('click', function () {
+    if (swTimer) {
+      clearInterval(swTimer);
+      swTimer = null;
+      swBtn.textContent = '▶ Resume';
+      return;
+    }
+    if (!swStart) swStart = Date.now();
+    swTimer = setInterval(renderTime, 250);
+    swBtn.textContent = '⏸ Pause';
+  });
+
+  swReset.addEventListener('click', function () {
+    clearInterval(swTimer);
+    swTimer = null;
+    swStart = null;
+    swTime.textContent = '0:00';
+    swTime.classList.remove('over');
+    swBtn.textContent = '▶ Start timer';
+  });
+})();
+</script>
+
+</body>
+</html>
